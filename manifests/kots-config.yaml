@@ -1,0 +1,20 @@
+---
+apiVersion: kots.io/v1beta1
+kind: Config
+metadata:
+  name: gpu-config
+spec:
+  groups:
+  - name: gpu_settings
+    title: GPU examples
+    description: Configuration to serve as an example for GPU enabled workloads
+    items:
+    - name: run_gpu_pod
+      title: Run a simple gpu pod
+      type: bool
+      default: "1"
+      recommended: true
+    - name: run_deepstream
+      title: Deploy Deepstream video analytics
+      type: bool
+      default: "0"

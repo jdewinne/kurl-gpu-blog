@@ -1,0 +1,28 @@
+apiVersion: troubleshoot.sh/v1beta2
+kind: SupportBundle
+metadata:
+  name: gpu-support-bundle
+spec:
+  collectors:
+    - clusterInfo: {}
+    - clusterResources: {}
+    - logs:
+        name: gpu-operator
+        selector:
+          - app=gpu-operator-test
+        namespace: '{{repl Namespace }}'
+        limits:
+          maxAge: 30d
+          maxLines: 10000
+  analyzers:
+    - textAnalyze:
+        checkName: GPU Operator Test
+        fileName: gpu-operator/gpu-operator-test.log
+        regex: 'Test PASSED'
+        outcomes:
+          - pass:
+              when: "true"
+              message: "Yes, GPU workloads are working"
+          - fail:
+              when: "false"
+              message: "Something is broken with the GPU. Check logs."

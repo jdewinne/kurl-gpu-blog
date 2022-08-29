@@ -1,0 +1,13 @@
+---
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: gpu
+spec:
+  title: GPU
+  icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/kubernetes/icon/color/kubernetes-icon-color.png
+  ports:
+    - serviceName: "video-analytics-demo-webui"
+      servicePort: 8888
+      localPort: 8888
+      applicationUrl: "https://video-analytics-demo-webui"
