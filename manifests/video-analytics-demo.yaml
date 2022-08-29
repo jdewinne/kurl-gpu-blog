@@ -23,6 +23,12 @@ spec:
   values:
     service:
       webuinodePort: 8888
+  optionalValues:
+    - when: "repl{{ ConfigOptionNotEquals `camera_one` `` }}"
+      recursiveMerge: false
+      values:
+        cameras:
+          camera1: "repl{{ ConfigOption `camera_one`}}"
 
   # builder values provide a way to render the chart with all images
   # and manifests. this is used in replicated to create airgap packages
