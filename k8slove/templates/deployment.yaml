@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "k8slove.fullname" . }}
+  labels:
+    {{- include "k8slove.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "k8slove.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "k8slove.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "k8slove.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: rtsp
+              containerPort: 8554
+              protocol: TCP
+            - name: api
+              containerPort: 9997
+              protocol: TCP        
+          livenessProbe:
+            httpGet:
+              path: /v1/paths/list
+              port: api
+          readinessProbe:
+            httpGet:
+              path: /v1/paths/list
+              port: api
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: rtsp-simple-server-config
+              mountPath: /rtsp-simple-server.yml
+              subPath: rtsp-simple-server.yml
+      volumes:
+        - name: rtsp-simple-server-config
+          configMap:
+            name: rtsp-simple-server-config
+            items:
+              - key: rtsp-simple-server-config.yml
+                path: rtsp-simple-server.yml
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

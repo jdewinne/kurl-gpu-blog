@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rtsp-simple-server-config
+data:
+  rtsp-simple-server-config.yml: |
+    protocols: [tcp]
+    api: yes
+    apiAddress: 0.0.0.0:9997
+    paths:
+        all:
+            source: publisher  

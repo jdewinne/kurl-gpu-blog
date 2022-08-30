@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: video-pod
+  labels:
+    app: video-pod
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: video-pod
+    image: "jdewinne/k8s-love:1.0.0"

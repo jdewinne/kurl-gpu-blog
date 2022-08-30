@@ -16,7 +16,7 @@ spec:
   # Replicated Helm installation (false) or native Helm installation (true). Default is false.
   # Native Helm installations are only available for Helm v3 charts.
   useHelmInstall: true
-  weight: 2
+  weight: 3
 
   # values are used in the customer environment, as a pre-render step
   # these values will be supplied to helm template
@@ -24,11 +24,11 @@ spec:
     service:
       webuinodePort: 8888
   optionalValues:
-    - when: "repl{{ ConfigOptionNotEquals `camera_one` `` }}"
+    - when: "repl{{ ConfigOptionEquals `k8slove` `1` }}"
       recursiveMerge: false
       values:
         cameras:
-          camera1: "repl{{ ConfigOption `camera_one`}}"
+          camera1: "rtsp://rtsp-k8slove:8554/mystream"
 
   # builder values provide a way to render the chart with all images
   # and manifests. this is used in replicated to create airgap packages

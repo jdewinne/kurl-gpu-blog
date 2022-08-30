@@ -18,8 +18,9 @@ spec:
       title: Deploy Deepstream video analytics
       type: bool
       default: "0"
-    - name: camera_one
-      title: Camera
-      help_text: Add your own rtsp stream
-      type: text
+    - name: k8slove
+      title: Add some k8s love
+      help_text: Add some k8s love to the GPU
+      type: bool
+      default: "0"
       when: repl{{ ConfigOptionEquals "run_deepstream" "1" }}
