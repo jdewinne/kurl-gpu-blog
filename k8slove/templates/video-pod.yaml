@@ -8,4 +8,4 @@ spec:
   restartPolicy: OnFailure
   containers:
   - name: video-pod
-    image: "jdewinne/k8s-love:1.0.0"
+    image: "jdewinne/k8s-love:1.0.2"

@@ -154,9 +154,21 @@ Now that we now the GPU is working, let's deploy a more cool app. The [Deepstrea
 
 Go in the Application installer to `Config` and Uncheck `Run a simple gpu pod` and check `Deploy deepstream video analytics`. This will generate a new version. Wait for the preflights to be succesfull, and hit deploy.
 
+![Deepstream](./img/deepstream.png)
+
 If you go to the `Dashboard`, you can click on `Open deepstream`. It will open a new webpage, and video analytics of a traffic stream will start to happen. (You might have to disable your add blocker).
 
 ![Analytics](./img/analytics.png)
+
+### Add k8slove
+
+As a last step, go back to the `config` screen, and check the box to add some k8s love. 
+
+![k8slove-config](./img/k8slove-config.png)
+
+Deploy the new version, and once everything is properly running, you can click on `Open deepstream` again. Have fun!
+
+
 
 ## Additional info
 
