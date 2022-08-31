@@ -168,9 +168,10 @@ As a last step, go back to the `config` screen, and check the box to add some k8
 
 Deploy the new version, and once everything is properly running, you can click on `Open deepstream` again. Have fun!
 
-
+![k8slove-stream](./img/k8slove-stream.png)
 
 ## Additional info
 
 + [Nvidia docs](https://docs.nvidia.com/datacenter/cloud-native/kubernetes/install-k8s.html#install-nvidia-container-toolkit-nvidia-docker2)
 + [kURL containerd add on](https://kurl.sh/docs/add-ons/containerd)
++ [rtsp-simple-server](https://github.com/aler9/rtsp-simple-server)
