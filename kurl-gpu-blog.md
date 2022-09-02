@@ -28,7 +28,7 @@ gcloud compute instances create $INSTANCE --boot-disk-size=80GB --boot-disk-type
 
 ### Install Nvidia drivers
 
-As a first step, once the GKE instance has started, we will need to install the nvidia drivers to be able to make use of the `nvidia-tesla-4`. Login into the instance using SSH and install the Nvidia cuda drivers:
+As a first step, once the GCE instance has started, we will need to install the nvidia drivers to be able to make use of the `nvidia-tesla-4`. Login into the instance using SSH and install the Nvidia cuda drivers:
 
 1. Add linux headers: 
    ```bash
