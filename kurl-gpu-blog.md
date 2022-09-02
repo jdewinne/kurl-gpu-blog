@@ -10,9 +10,9 @@ This blog post will guide you through the different steps needed to enable GPU s
 
 ### Create a GPU enabled compute instance
 
-For example, in GKE you can easily create a GPU enable VM using the following command:
+For example, in GCE you can easily create a GPU enable VM using the following command:
 
-Tested on a GKE instance of type `n1-standard-8` using a `nvidia-tesla-t4` GPU and 80GB disk.
+Tested on a GCE instance of type `n1-standard-8` using a `nvidia-tesla-t4` GPU and 80GB disk.
 
 ```
 export IMAGE_PROJECT=ubuntu-os-cloud
